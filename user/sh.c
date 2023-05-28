@@ -103,15 +103,15 @@ runcmd(struct cmd *cmd)
       panic("pipe");
     if(fork1() == 0){
       close(1);
-      dup(p[1]);
+      dup(p[1]); //关闭标准输出，将管道的输出重定向到标准输出。
       close(p[0]);
       close(p[1]);
       runcmd(pcmd->left);
     }
     if(fork1() == 0){
       close(0);
-      dup(p[0]);
-      close(p[0]);
+      dup(p[0]);//关闭标准输入，将管道的输入重定向到标准输入。
+      close(p[0]);//也就是将左边的输出当做右边的输入。
       close(p[1]);
       runcmd(pcmd->right);
     }

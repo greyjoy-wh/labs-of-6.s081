@@ -35,18 +35,18 @@ ls(char *path)
     return;
   }
 
-  if(fstat(fd, &st) < 0){
+  if(fstat(fd, &st) < 0){  //获取打开文件（夹）的所有信息
     fprintf(2, "ls: cannot stat %s\n", path);
     close(fd);
     return;
   }
 
   switch(st.type){
-  case T_FILE:
+  case T_FILE: //如果是文件 直接打印信息
     printf("%s %d %d %l\n", fmtname(path), st.type, st.ino, st.size);
     break;
 
-  case T_DIR:
+  case T_DIR: //如果是文件夹
     if(strlen(path) + 1 + DIRSIZ + 1 > sizeof buf){
       printf("ls: path too long\n");
       break;
@@ -70,6 +70,7 @@ ls(char *path)
   close(fd);
 }
 
+//列出当前文件夹下的所有文件
 int
 main(int argc, char *argv[])
 {

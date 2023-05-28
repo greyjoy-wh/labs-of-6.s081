@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "user.h": "c",
+        "types.h": "c",
+        "stat.h": "c",
+        "cmath": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "typeinfo": "c"
+    }
+}
